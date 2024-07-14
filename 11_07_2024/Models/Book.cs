@@ -4,30 +4,29 @@ namespace _11_07_2024.Models
 {
     public class Book : Product
     {
-        private static int _id = 1;
         public string AuthorName { get; set; }
         public int PageCount { get; set; }
-        public Book(string name, decimal price, string authorName, int pageCount) : base(name, price) 
+        public Book(string name, decimal price, string authorName, int pageCount, int count)
         {
-            Id = _id++;
             Name = name;
             Price = price;
             AuthorName = authorName;
             PageCount = pageCount;
+            Count = count;
         }
         public override void Sell()
         {
-            if(Count == 0)
+            if (Count == 0)
             {
-                throw new ProductCountIsZeroException();
+                throw new ProductCountIsZeroException("The book count is zero. Cannot sell.");
             }
 
             Count--;
-            TotalIncome+=Price;
+            TotalIncome += Price;
         }
         public override void ShowInfo()
         {
-            Console.WriteLine($"Author - {AuthorName}, {PageCount} pages.");
+            Console.WriteLine($"Id: {Id}, Name: {Name}, Author: {AuthorName}, Price: {Price}, Pages: {PageCount}, Count: {Count}");
         }
     }
 }

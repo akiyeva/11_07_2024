@@ -2,15 +2,15 @@
 {
     public abstract class Product
     {
-        public int Id { get; protected set; }
+        private static int _id = 1;
+        public int Id { get; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Count { get; set; }
         public decimal TotalIncome { get; protected set; }
-        public Product(string name, decimal price)
+        public Product()
         {
-            Name = name;
-            Price = price;
+            Id = _id++;
         }
         public abstract void Sell();
         public abstract void ShowInfo();
